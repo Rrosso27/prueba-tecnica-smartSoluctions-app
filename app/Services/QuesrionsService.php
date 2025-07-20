@@ -53,7 +53,7 @@ class QuesrionsService
      * @param array $data
      * @return \Illuminate\Http\JsonResponse
      */
-    public function create(array $data)
+    public function store(array $data)
     {
         try {
             $question = Quesrions::create($data);
@@ -104,6 +104,27 @@ class QuesrionsService
             return response()->json([
                 'success' => false,
                 'message' => 'Error deleting question: ' . $e->getMessage(),
+            ], 500);
+        }
+    }
+
+    /**
+     * Get all questions  of  surveys_id
+     * @param int $perPage
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getAllBySurveyId(int $surveyId, int $perPage = 10)
+    {
+        try {
+            $questions = Quesrions::where('survey_id', $surveyId)->paginate($perPage);
+            return response()->json([
+                'success' => true,
+                'data' => $questions,
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Error fetching questions: ' . $e->getMessage(),
             ], 500);
         }
     }

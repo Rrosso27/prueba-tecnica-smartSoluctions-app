@@ -20,11 +20,21 @@ use Illuminate\Database\Eloquent\Model;
 class Quesrions extends Model
 {
     use HasFactory;
+
     protected $fillable = [
+        'survey_id',
         'question_text',
         'question_type',
         'options',
-        'survey_id'
+    ];
+
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array<string, string>
+     */
+    protected $casts = [
+        'options' => 'array',
     ];
 
     /**

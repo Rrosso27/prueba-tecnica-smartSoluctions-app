@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\SurveysController;
+use App\Http\Controllers\QuestionsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,5 +35,13 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::delete('/{id}', [SurveysController::class, 'destroy']);
     });
 
-    // Aquí puedes agregar más rutas protegidas
+    Route::group(['prefix' => 'questions'], function () {
+        Route::get('/', [QuestionsController::class, 'index']);
+        Route::get('/{id}', [QuestionsController::class, 'show']);
+        Route::post('/', [QuestionsController::class, 'store']);
+        Route::put('/{id}', [QuestionsController::class, 'update']);
+        Route::delete('/{id}', [QuestionsController::class, 'destroy']);
+        // Ruta para obtener todas las preguntas de una encuesta específica
+        Route::get('/survey/{surveyId}', [QuestionsController::class, 'getAllBySurveyId']);
+    });
 });
