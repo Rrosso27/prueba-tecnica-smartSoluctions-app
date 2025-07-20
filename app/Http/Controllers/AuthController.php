@@ -112,6 +112,5 @@ class AuthController extends Controller
                 'message' => 'Failed to retrieve user: ' . $e->getMessage(),
             ], 500);
         }
-
     }
 }
