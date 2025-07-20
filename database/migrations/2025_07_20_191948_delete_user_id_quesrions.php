@@ -12,10 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('quesrions', function (Blueprint $table) {
-            // Primero eliminar la restricción de clave foránea
-            // Usar el nombre específico que genera Laravel por defecto
             $table->dropForeign('quesrions_user_id_foreign');
-            // Luego eliminar la columna
             $table->dropColumn('user_id');
         });
     }

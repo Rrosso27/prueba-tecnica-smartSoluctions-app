@@ -21,16 +21,17 @@ class Quesrions extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'user_id',
         'question_text',
         'question_type',
         'options',
+        'survey_id'
     ];
+
     /**
-     * Get the user that owns the question.
+     * Get the survey that owns the question.
      */
-    public function user()
+    public function survey()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Surveys::class, 'survey_id');
     }
 }
