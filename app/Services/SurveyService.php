@@ -28,10 +28,10 @@ class SurveyService
 
     /**
      * Get survey by ID
-     * @param int $id
+     * @param string|int $id
      * @return \Illuminate\Http\JsonResponse
      */
-    public function getById(int $id)
+    public function getById($id)
     {
         try {
             $survey = Surveys::findOrFail($id);
@@ -72,11 +72,11 @@ class SurveyService
 
     /**
      * Update an existing survey
-     * @param int $id
+     * @param string|int $id
      * @param array $data
      * @return \Illuminate\Http\JsonResponse
      */
-    public function update(int $id, array $data)
+    public function update($id, array $data)
     {
         try {
             $survey = Surveys::findOrFail($id);
@@ -96,10 +96,10 @@ class SurveyService
 
     /**
      * Delete a survey
-     * @param int $id
+     * @param string|int $id
      * @return \Illuminate\Http\JsonResponse
      */
-    public function delete(int $id)
+    public function delete($id)
     {
         try {
             $survey = Surveys::findOrFail($id);

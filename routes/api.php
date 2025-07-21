@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\SurveysController;
 use App\Http\Controllers\QuestionsController;
+use App\Http\Controllers\ResponseController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -43,5 +44,18 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::delete('/{id}', [QuestionsController::class, 'destroy']);
         // Ruta para obtener todas las preguntas de una encuesta específica
         Route::get('/survey/{surveyId}', [QuestionsController::class, 'getAllBySurveyId']);
+    });
+
+    // Rutas de respuestas protegidas
+    Route::group(['prefix' => 'responses'], function () {
+        // Rutas específicas PRIMERO (antes de las rutas con parámetros dinámicos)
+        Route::get('/my', [ResponseController::class, 'getByAuthUser']);
+        Route::get('/debug-auth', [ResponseController::class, 'debugAuth']);
+
+        // Rutas con parámetros dinámicos DESPUÉS
+        Route::get('/{id}', [ResponseController::class, 'show']);
+        Route::post('/', [ResponseController::class, 'store']);
+        Route::put('/{id}', [ResponseController::class, 'update']);
+        Route::delete('/{id}', [ResponseController::class, 'destroy']);
     });
 });

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 
 /**
- * Class Quesrions
+ * Class Questions
  *
  * @property int $id
  * @property int $user_id
@@ -17,7 +17,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  */
-class Quesrions extends Model
+class Questions extends Model
 {
     use HasFactory;
 

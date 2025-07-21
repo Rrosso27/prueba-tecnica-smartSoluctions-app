@@ -2,9 +2,9 @@
 
 namespace App\Services;
 
-use App\Models\Quesrions;
+use App\Models\Questions;
 
-class QuesrionsService
+class QuestionsService
 {
     /**
      * get all questions
@@ -16,7 +16,7 @@ class QuesrionsService
         try {
             return response()->json([
                 'success' => true,
-                'data' =>  Quesrions::all(),
+                'data' =>  Questions::all(),
             ]);
         } catch (\Exception $e) {
             return response()->json([
@@ -28,14 +28,14 @@ class QuesrionsService
 
 
     /** get by id question
-     *  @param int $id
+     *  @param string|int $id
      * @return \Illuminate\Http\JsonResponse
      *
      */
-    public function getById(int $id)
+    public function getById($id)
     {
         try {
-            $question = Quesrions::findOrFail($id);
+            $question = Questions::findOrFail($id);
             return response()->json([
                 'success' => true,
                 'data' => $question,
@@ -56,7 +56,7 @@ class QuesrionsService
     public function store(array $data)
     {
         try {
-            $question = Quesrions::create($data);
+            $question = Questions::create($data);
             return response()->json([
                 'success' => true,
                 'data' => $question,
@@ -69,10 +69,10 @@ class QuesrionsService
         }
     }
 
-    public function update(int $id, array $data)
+    public function update($id, array $data)
     {
         try {
-            $question = Quesrions::findOrFail($id);
+            $question = Questions::findOrFail($id);
             $question->update($data);
             return response()->json([
                 'success' => true,
@@ -88,13 +88,13 @@ class QuesrionsService
 
     /**
      * Delete a question
-     * @param int $id
+     * @param string|int $id
      * @return \Illuminate\Http\JsonResponse
      */
-    public function delete(int $id)
+    public function delete($id)
     {
         try {
-            $question = Quesrions::findOrFail($id);
+            $question = Questions::findOrFail($id);
             $question->delete();
             return response()->json([
                 'success' => true,
@@ -116,7 +116,7 @@ class QuesrionsService
     public function getAllBySurveyId(int $surveyId, int $perPage = 10)
     {
         try {
-            $questions = Quesrions::where('survey_id', $surveyId)->paginate($perPage);
+            $questions = Questions::where('survey_id', $surveyId)->paginate($perPage);
             return response()->json([
                 'success' => true,
                 'data' => $questions,

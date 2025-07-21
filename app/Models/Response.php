@@ -24,11 +24,23 @@ class Response extends Model
     }
 
     /**
-     * Get the question that the response belongs to.
+     * get response by user
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     *
      */
-
     public function question()
     {
-        return $this->belongsTo(Quesrions::class, 'question_id');
+        return $this->belongsTo(Questions::class, 'question_id');
     }
+
+
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array<string, string>
+     */
+    protected $casts = [
+        'answer' => 'array',
+    ];
+
 }

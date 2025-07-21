@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\QuestionRequest;
-use App\Services\QuesrionsService;
+use App\Services\QuestionsService;
 
 class QuestionsController extends Controller
 {
     protected $questionService;
 
-    public function __construct(QuesrionsService $questionService)
+    public function __construct(QuestionsService $questionService)
     {
         $this->questionService = $questionService;
     }
