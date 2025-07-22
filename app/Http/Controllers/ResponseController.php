@@ -39,11 +39,12 @@ class ResponseController extends Controller
     /**
      * Get responses by authenticated user.
      *
+     * @param int $survey_id
      * @return \Illuminate\Http\JsonResponse
      */
-    public function getByAuthUser()
+    public function getByAuthUser($survey_id)
     {
-        return $this->responseService->getByAuthUser();
+        return $this->responseService->getByAuthUser($survey_id);
     }
 
     /**
@@ -56,19 +57,10 @@ class ResponseController extends Controller
         return $this->responseService->debugAuth();
     }
 
-    /**
-     * Get responses for a specific question by authenticated user.
-     *
-     * @param string|int $questionId
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function getByQuestionAndAuthUser($questionId)
-    {
-        return $this->responseService->getByQuestionAndAuthUser($questionId);
-    }
+
 
     /**
-     * Store a newly created response.
+     * Store responses (single or multiple, various formats).
      *
      * @param ResponseRequest $request
      * @return \Illuminate\Http\JsonResponse
@@ -76,7 +68,8 @@ class ResponseController extends Controller
     public function store(ResponseRequest $request)
     {
         try {
-            return $this->responseService->store($request->validated());
+            $data = $request->validated();
+            return $this->responseService->store($data);
         } catch (\Exception $e) {
             return response()->json([
                 'success' => false,

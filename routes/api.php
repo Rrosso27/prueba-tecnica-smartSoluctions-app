@@ -49,7 +49,7 @@ Route::middleware('auth:sanctum')->group(function () {
     // Rutas de respuestas protegidas
     Route::group(['prefix' => 'responses'], function () {
         // Rutas específicas PRIMERO (antes de las rutas con parámetros dinámicos)
-        Route::get('/my', [ResponseController::class, 'getByAuthUser']);
+        Route::get('/my/{id}', [ResponseController::class, 'getByAuthUser']);
         Route::get('/debug-auth', [ResponseController::class, 'debugAuth']);
 
         // Rutas con parámetros dinámicos DESPUÉS

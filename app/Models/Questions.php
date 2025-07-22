@@ -44,4 +44,12 @@ class Questions extends Model
     {
         return $this->belongsTo(Surveys::class, 'survey_id');
     }
+
+    /**
+     * Get the responses for the question.
+     */
+    public function responses()
+    {
+        return $this->hasMany(Questions::class, 'question_id');
+    }
 }
