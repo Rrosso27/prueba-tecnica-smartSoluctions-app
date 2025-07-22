@@ -1,4 +1,8 @@
 
+  # Clonación del repositorio.
+  ~~~bash  
+   git clone https://github.com/Rrosso27/prueba-tecnica-smartSoluctions-app.git
+  ~~~
   # Crear Base de datos    
   Antes de empezar crea una base de de datos, con el nombre de:
   ~~~bash  
